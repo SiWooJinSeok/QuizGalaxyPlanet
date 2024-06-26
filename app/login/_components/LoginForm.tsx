@@ -3,18 +3,28 @@ import React, { useState } from "react";
 import InputBox from "../../../assets/components/Input/InputBox";
 import { BASE_COLOR } from "../../../assets/constants/color";
 import { AUTH_ERROR_MESSAGE } from "../../../assets/constants/message";
+import { Link } from "expo-router";
+import {
+  checkEmail,
+  checkPassword,
+} from "../../../assets/utils/checkSignMessage";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const submitLogin = async () => {
-    if (email === "") {
-      return alert(AUTH_ERROR_MESSAGE.NOT_EMAIL);
+    const checkedEmail = checkEmail(email);
+    const checkedPassword = checkPassword(password);
+
+    if (checkedEmail !== "") {
+      alert(checkedEmail);
+      return;
     }
 
-    if (password === "") {
-      return alert(AUTH_ERROR_MESSAGE.NOT_PASSWORD);
+    if (checkedPassword !== "") {
+      alert(checkedPassword);
+      return;
     }
 
     console.log(email, password);
@@ -39,6 +49,10 @@ export default function LoginForm() {
       <Pressable style={styles.submitButton} onPress={submitLogin}>
         <Text style={styles.submitButtonText}>로그인</Text>
       </Pressable>
+
+      <Link href={{ pathname: "/signup" }} style={styles.signLinkText}>
+        <Text style={styles.signLinkText}>회원가입하러 가기</Text>
+      </Link>
     </View>
   );
 }
@@ -59,5 +73,11 @@ const styles = StyleSheet.create({
   submitButtonText: {
     fontSize: 20,
     color: BASE_COLOR.LIGHT_TEXT,
+  },
+  signLinkText: {
+    color: BASE_COLOR.LIGHT,
+    fontSize: 20,
+    textAlign: "center",
+    padding: 20,
   },
 });
