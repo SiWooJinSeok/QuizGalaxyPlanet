@@ -8,6 +8,7 @@ import {
   View,
 } from "react-native";
 import Header from "./_components/Header";
+import { BASE_COLOR } from "../assets/constants/color";
 
 export default function App() {
   return (
@@ -43,7 +44,6 @@ const styles = StyleSheet.create({
   linkContainer: {
     paddingVertical: 50,
     flex: 1,
-    backgroundColor: "rgba(0,0,0,0.5)",
   },
   bg: {
     flex: 1,
@@ -54,12 +54,12 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   touchMeText: {
-    color: "#E49BFF",
+    color: BASE_COLOR.DEEP_PURPLE,
     fontSize: 20,
   },
   title: {
     fontSize: 30,
     fontWeight: "bold",
-    color: "#F8F9D7",
+    color: BASE_COLOR.LIGHT_YELLOW,
   },
 });
