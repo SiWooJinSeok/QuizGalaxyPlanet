@@ -2,7 +2,6 @@ import { View, Text, StyleSheet, Pressable } from "react-native";
 import React, { useState } from "react";
 import InputBox from "../../../assets/components/Input/InputBox";
 import { BASE_COLOR } from "../../../assets/constants/color";
-import { AUTH_ERROR_MESSAGE } from "../../../assets/constants/message";
 import { Link } from "expo-router";
 import {
   checkEmail,
