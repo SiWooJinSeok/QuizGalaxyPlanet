@@ -2,12 +2,21 @@ import { View, Text, StyleSheet, Pressable } from "react-native";
 import React, { useState } from "react";
 import InputBox from "../../../assets/components/Input/InputBox";
 import { BASE_COLOR } from "../../../assets/constants/color";
+import { AUTH_ERROR_MESSAGE } from "../../../assets/constants/message";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const submitLogin = () => {
+  const submitLogin = async () => {
+    if (email === "") {
+      return alert(AUTH_ERROR_MESSAGE.NOT_EMAIL);
+    }
+
+    if (password === "") {
+      return alert(AUTH_ERROR_MESSAGE.NOT_PASSWORD);
+    }
+
     console.log(email, password);
   };
   return (
@@ -40,7 +49,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   submitButton: {
-    backgroundColor: BASE_COLOR.LIGHT_PURPLE,
+    backgroundColor: BASE_COLOR.LIGHT,
     padding: 20,
     borderRadius: 15,
     alignItems: "center",
@@ -49,6 +58,6 @@ const styles = StyleSheet.create({
   },
   submitButtonText: {
     fontSize: 20,
-    color: BASE_COLOR.LIGHT_YELLOW,
+    color: BASE_COLOR.LIGHT_TEXT,
   },
 });

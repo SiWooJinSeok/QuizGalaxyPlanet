@@ -23,7 +23,7 @@ export default function LoginPage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: BASE_COLOR.DEEP_PURPLE,
+    backgroundColor: BASE_COLOR.DEEP,
   },
   logo: {
     flex: 1,
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   buttonText: {
-    color: BASE_COLOR.LIGHT_YELLOW,
+    color: BASE_COLOR.LIGHT_TEXT,
     fontSize: 30,
   },
 });

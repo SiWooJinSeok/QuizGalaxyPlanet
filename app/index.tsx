@@ -54,12 +54,12 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   touchMeText: {
-    color: BASE_COLOR.DEEP_PURPLE,
+    color: BASE_COLOR.DEEP,
     fontSize: 20,
   },
   title: {
     fontSize: 30,
     fontWeight: "bold",
-    color: BASE_COLOR.LIGHT_YELLOW,
+    color: BASE_COLOR.LIGHT_TEXT,
   },
 });

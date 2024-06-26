@@ -18,7 +18,7 @@ export default function InputBox({ labelName, ...rest }: InputBoxProps) {
       <Text style={styles.label}>{labelName}</Text>
       <TextInput
         autoCapitalize="none"
-        placeholderTextColor={BASE_COLOR.LIGHT_YELLOW}
+        placeholderTextColor={BASE_COLOR.LIGHT}
         style={styles.input}
         {...rest}
       />
@@ -33,16 +33,16 @@ const styles = StyleSheet.create({
   input: {
     paddingVertical: 15,
     paddingHorizontal: 20,
-    backgroundColor: BASE_COLOR.MEDIUM_PURPLE,
+    backgroundColor: BASE_COLOR.MEDIUM,
     padding: 10,
     borderWidth: 1,
-    borderColor: BASE_COLOR.LIGHT_PURPLE,
+    borderColor: BASE_COLOR.LIGHT,
     marginBottom: 10,
     borderRadius: 15,
-    color: BASE_COLOR.LIGHT_YELLOW,
+    color: BASE_COLOR.LIGHT_TEXT,
   },
   label: {
-    color: BASE_COLOR.LIGHT_YELLOW,
+    color: BASE_COLOR.LIGHT_TEXT,
     marginBottom: 8,
   },
 });
