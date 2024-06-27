@@ -2,15 +2,19 @@ import { View, Text, StyleSheet, Pressable } from "react-native";
 import React, { useState } from "react";
 import InputBox from "../../../assets/components/Input/InputBox";
 import { BASE_COLOR } from "../../../assets/constants/color";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import {
   checkEmail,
   checkPassword,
 } from "../../../assets/utils/checkSignMessage";
+import { axiosInstance } from "../../../assets/api/axiosInstance";
+import userStore from "../../../assets/stores/userStore";
+import { ResponseUserType } from "../../../assets/types/userType";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { setUser, setAccessToken } = userStore();
 
   const submitLogin = async () => {
     const checkedEmail = checkEmail(email);
@@ -26,8 +30,27 @@ export default function LoginForm() {
       return;
     }
 
-    console.log(email, password);
+    try {
+      const res = await axiosInstance.post("auth/login", {
+        email,
+        password,
+      });
+      const data: ResponseUserType = res.data;
+      setUser({
+        id: data.id,
+        email: data.email,
+        nickname: data.nickname,
+        profile_image: data.profile_image,
+        introduction: data.introduction,
+      });
+      setAccessToken(data.accessToken);
+      router.push("/lobby");
+    } catch (e) {
+      console.log("error:", e);
+      alert(e);
+    }
   };
+
   return (
     <View style={styles.form}>
       <InputBox
