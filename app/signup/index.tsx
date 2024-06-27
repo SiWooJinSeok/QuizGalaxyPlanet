@@ -1,18 +1,18 @@
-import { Link } from "expo-router";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
+import SignHeader from "../../assets/components/Sign/SignHeader";
+import { BASE_COLOR } from "../../assets/constants/color";
+import SignupForm from "./_components/SignupForm";
 
 export default function LoginPage() {
   return (
     <View style={styles.container}>
-      <Link
-        style={styles.button}
-        href={{
-          pathname: "/",
-        }}
-      >
-        <Text style={styles.buttonText}>홈으로</Text>
-      </Link>
+      <SignHeader />
+      <View style={styles.scrollView}>
+        <ScrollView>
+          <SignupForm />
+        </ScrollView>
+      </View>
     </View>
   );
 }
@@ -20,18 +20,9 @@ export default function LoginPage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: BASE_COLOR.DEEP,
   },
-  button: {
-    marginTop: 20,
-    padding: 20,
-    backgroundColor: "skyblue",
-    borderRadius: 10,
-  },
-  buttonText: {
-    color: "white",
-    fontSize: 16,
+  scrollView: {
+    flex: 3,
   },
 });

@@ -4,4 +4,6 @@ export const AUTH_ERROR_MESSAGE = {
   INVALID_NICKNAME: "닉네임은 2자 이상이어야 합니다.",
   NOT_EMAIL: "이메일을 입력해주세요.",
   NOT_PASSWORD: "비밀번호를 입력해주세요.",
+  NOT_NICKNAME: "닉네임을 입력해주세요.",
+  NOT_PASSWORD_MATCH: "비밀번호가 일치하지 않습니다.",
 };

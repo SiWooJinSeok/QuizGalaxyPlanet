@@ -3,10 +3,7 @@ import React, { useState } from "react";
 import InputBox from "../../../assets/components/Input/InputBox";
 import { BASE_COLOR } from "../../../assets/constants/color";
 import { Link, router } from "expo-router";
-import {
-  checkEmail,
-  checkPassword,
-} from "../../../assets/utils/checkSignMessage";
+import { checkLoginMessage } from "../../../assets/utils/checkSignMessage";
 import { axiosInstance } from "../../../assets/api/axiosInstance";
 import userStore from "../../../assets/stores/userStore";
 import { ResponseUserType } from "../../../assets/types/userType";
@@ -17,16 +14,10 @@ export default function LoginForm() {
   const { setUser, setAccessToken } = userStore();
 
   const submitLogin = async () => {
-    const checkedEmail = checkEmail(email);
-    const checkedPassword = checkPassword(password);
+    const checkMessage = checkLoginMessage(email, password);
 
-    if (checkedEmail !== "") {
-      alert(checkedEmail);
-      return;
-    }
-
-    if (checkedPassword !== "") {
-      alert(checkedPassword);
+    if (checkMessage !== "") {
+      alert(checkMessage);
       return;
     }
 
@@ -35,7 +26,7 @@ export default function LoginForm() {
         email,
         password,
       });
-      const data: ResponseUserType = res.data;
+      const data: ResponseUserType = await res.data;
       setUser({
         id: data.id,
         email: data.email,
@@ -58,7 +49,7 @@ export default function LoginForm() {
         placeholder="이메일을 입력해주세요"
         value={email}
         onChangeText={(value: string) => setEmail(value)}
-        onSubmitEditing={submitLogin}
+        returnKeyType="next"
       />
       <InputBox
         labelName="비밀번호"
@@ -81,7 +72,7 @@ export default function LoginForm() {
 
 const styles = StyleSheet.create({
   form: {
-    flex: 2,
+    flex: 3,
     justifyContent: "flex-start",
   },
   submitButton: {
