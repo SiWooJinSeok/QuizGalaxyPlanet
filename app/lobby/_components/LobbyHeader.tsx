@@ -14,7 +14,8 @@ export default function LobbyHeader() {
         <View style={styles.profile}>
           <Image
             style={styles.profileImage}
-            source={require("../../../assets/img/mainbg.jpg")}
+            source={require("../../../assets/img/logo.jpg")}
+            contentFit="cover"
           />
           <Text style={styles.text}>{user.nickname}</Text>
         </View>
@@ -23,7 +24,16 @@ export default function LobbyHeader() {
         <ImageBackground
           source={require("../../../assets/img/mainbg.jpg")}
           style={styles.bgBox}
-        ></ImageBackground>
+        >
+          <View style={styles.title}>
+            <Image
+              style={styles.logo}
+              source={require("../../../assets/img/logo.jpg")}
+              contentFit="cover"
+            />
+            <Text style={styles.titleText}>Quiz Galaxy Planet</Text>
+          </View>
+        </ImageBackground>
       </View>
     </View>
   );
@@ -43,12 +53,27 @@ const styles = StyleSheet.create({
   bgBox: {
     flex: 5,
   },
-
+  title: {
+    flex: 1,
+    gap: 20,
+    paddingBottom: 20,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  titleText: {
+    fontSize: 30,
+    color: BASE_COLOR.MEDIUM,
+  },
   text: {
     color: BASE_COLOR.LIGHT_TEXT,
     fontSize: 20,
   },
-
+  logo: {
+    flex: 1,
+    width: "50%",
+    marginTop: 30,
+    borderRadius: 15,
+  },
   profile: {
     gap: 4,
     flexDirection: "row",
