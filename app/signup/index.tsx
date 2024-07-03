@@ -1,12 +1,12 @@
 import React from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import SignHeader from "../../assets/components/Sign/SignHeader";
-import { BASE_COLOR } from "../../assets/constants/color";
 import SignupForm from "./_components/SignupForm";
+import { containerStyle } from "../../assets/styles/common";
 
 export default function LoginPage() {
   return (
-    <View style={styles.container}>
+    <View style={containerStyle.base}>
       <SignHeader />
       <View style={styles.scrollView}>
         <ScrollView>
@@ -18,10 +18,6 @@ export default function LoginPage() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: BASE_COLOR.DEEP,
-  },
   scrollView: {
     flex: 3,
   },

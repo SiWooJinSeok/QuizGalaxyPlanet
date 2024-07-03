@@ -1,10 +1,10 @@
-import { StyleSheet, Text, View } from "react-native";
-import { BASE_COLOR } from "../../assets/constants/color";
+import { Text, View } from "react-native";
 import LoginForm from "./_components/LoginForm";
 import SignHeader from "../../assets/components/Sign/SignHeader";
 import userStore from "../../assets/stores/userStore";
 import { Link, router } from "expo-router";
 import { useEffect } from "react";
+import { containerStyle } from "../../assets/styles/common";
 
 export default function LoginPage() {
   const { accessToken } = userStore();
@@ -15,7 +15,7 @@ export default function LoginPage() {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <View style={containerStyle.base}>
       <SignHeader />
       <LoginForm />
 
@@ -25,10 +25,3 @@ export default function LoginPage() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: BASE_COLOR.DEEP,
-  },
-});

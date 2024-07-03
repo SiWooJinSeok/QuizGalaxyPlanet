@@ -9,13 +9,14 @@ import {
 } from "react-native";
 import Header from "./_components/Header";
 import { BASE_COLOR } from "../assets/constants/color";
+import { containerStyle } from "../assets/styles/common";
 
 export default function App() {
   return (
-    <View style={styles.main}>
+    <View style={containerStyle.flex_1}>
       <ImageBackground
         source={require("../assets/img/mainbg.jpg")}
-        style={styles.bg}
+        style={containerStyle.flex_1}
       >
         <Link
           href={{
@@ -38,14 +39,8 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  main: {
-    flex: 1,
-  },
   linkContainer: {
     paddingVertical: 50,
-    flex: 1,
-  },
-  bg: {
     flex: 1,
   },
   touchMeContainer: {

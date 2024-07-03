@@ -25,3 +25,10 @@ export const formStyle = StyleSheet.create({
     padding: 20,
   },
 });
+
+export const ContainerStyle = StyleSheet.create({
+  base: {
+    flex: 1,
+    backgroundColor: BASE_COLOR.DEEP,
+  },
+});
