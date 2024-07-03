@@ -10,7 +10,7 @@ import { axiosInstance } from "../../../assets/api/axiosInstance";
 
 export default function EmailConfirmForm() {
   const { email } = userStore();
-  const [code, setCode] = useState("");
+  const [code, setCode] = useState<string[]>(Array(6).fill(""));
   const [loading, setLoading] = useState(false);
 
   const inputs = useRef<TextInput[]>([]);
@@ -18,7 +18,7 @@ export default function EmailConfirmForm() {
   const handleChangeText = (value: string, index: number) => {
     const updateCode = [...code];
     updateCode[index] = value;
-    setCode(updateCode.join(""));
+    setCode(updateCode);
 
     if (value && index < 5) {
       inputs.current[index + 1].focus();
@@ -33,12 +33,11 @@ export default function EmailConfirmForm() {
   }, []);
 
   const submit = async () => {
-    console.log(code);
     if (loading) {
       return;
     }
 
-    if (code.length !== 6) {
+    if (code.includes("")) {
       inputs.current[0].focus();
       return;
     }
@@ -48,7 +47,7 @@ export default function EmailConfirmForm() {
 
       const res = await axiosInstance.post("auth/confirm-email", {
         email,
-        code,
+        code: code.join(""),
       });
       if (res.status === 204) {
         alert("이메일 인증이 완료되었습니다.");
@@ -121,7 +120,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
-    marginVertical: 50,
+    marginBottom: 50,
   },
   otpInput: {
     width: 50,
