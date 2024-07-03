@@ -6,4 +6,5 @@ export const AUTH_ERROR_MESSAGE = {
   NOT_PASSWORD: "비밀번호를 입력해주세요.",
   NOT_NICKNAME: "닉네임을 입력해주세요.",
   NOT_PASSWORD_MATCH: "비밀번호가 일치하지 않습니다.",
+  NULL_EMAIL: "이메일이 누락되었습니다. 로그인 페이지로 이동합니다.",
 };

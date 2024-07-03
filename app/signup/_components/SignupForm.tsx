@@ -1,18 +1,20 @@
-import { View, Text, Pressable, StyleSheet } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import React, { useState } from "react";
 import InputBox from "../../../assets/components/Input/InputBox";
 import { Link, router } from "expo-router";
-import { BASE_COLOR } from "../../../assets/constants/color";
 import { checkSignUpMessage } from "../../../assets/utils/checkSignMessage";
 import { axiosInstance } from "../../../assets/api/axiosInstance";
 import { changeAxiosErrorMessage } from "../../../assets/utils/changeAxiosErrorMessage";
 import { formStyle } from "./../../../assets/styles/signStyle";
+import userStore from "../../../assets/stores/userStore";
 
 export default function SignupForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
   const [nickname, setNickname] = useState("");
+
+  const { setEmail: setUserEmail } = userStore();
 
   const submitSignup = async () => {
     const checkMessage = checkSignUpMessage(
@@ -35,8 +37,9 @@ export default function SignupForm() {
         password,
       });
       if (res.status === 201) {
+        setUserEmail(email);
         alert("회원가입이 완료되었습니다.");
-        router.replace("/login");
+        router.replace("/email-confirm");
       }
     } catch (e: unknown) {
       const message = changeAxiosErrorMessage(e);

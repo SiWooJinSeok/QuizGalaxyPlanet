@@ -3,12 +3,13 @@ import React from "react";
 import userStore from "../../../assets/stores/userStore";
 import { BASE_COLOR } from "../../../assets/constants/color";
 import { Image } from "expo-image";
+import { containerStyle } from "../../../assets/styles/common";
 
 export default function LobbyHeader() {
   const { user, accessToken } = userStore();
 
   return (
-    <View style={styles.container}>
+    <View style={containerStyle.flex_1}>
       <View style={styles.rowFlex}>
         <Text style={styles.text}>Best : 0</Text>
         <View style={styles.profile}>
@@ -40,9 +41,6 @@ export default function LobbyHeader() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   rowFlex: {
     flex: 1,
     flexDirection: "row",

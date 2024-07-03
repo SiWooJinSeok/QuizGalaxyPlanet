@@ -7,11 +7,13 @@ import { axiosInstance } from "../../../assets/api/axiosInstance";
 import userStore from "../../../assets/stores/userStore";
 import { ResponseUserType } from "../../../assets/types/userType";
 import { formStyle } from "../../../assets/styles/signStyle";
+import { changeAxiosErrorMessage } from "../../../assets/utils/changeAxiosErrorMessage";
+import { AxiosError } from "axios";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setUser, setAccessToken } = userStore();
+  const { setUser, setAccessToken, setEmail: setUserEmail } = userStore();
 
   const submitLogin = async () => {
     const checkMessage = checkLoginMessage(email, password);
@@ -35,10 +37,16 @@ export default function LoginForm() {
         introduction: data.introduction,
       });
       setAccessToken(data.accessToken);
-      router.push("/lobby");
+      router.replace("/lobby");
     } catch (e) {
-      console.log("error:", e);
-      alert(e);
+      const error = e as AxiosError;
+      const message = changeAxiosErrorMessage(e);
+      alert(message);
+      if (error.response?.status === 403) {
+        console.log("403");
+        setUserEmail(email);
+        router.push("/email-confirm");
+      }
     }
   };
 
