@@ -1,9 +1,9 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { BASE_COLOR } from "../../assets/constants/color";
 import LoginForm from "./_components/LoginForm";
 import SignHeader from "../../assets/components/Sign/SignHeader";
 import userStore from "../../assets/stores/userStore";
-import { router } from "expo-router";
+import { Link, router } from "expo-router";
 import { useEffect } from "react";
 
 export default function LoginPage() {
@@ -18,6 +18,10 @@ export default function LoginPage() {
     <View style={styles.container}>
       <SignHeader />
       <LoginForm />
+
+      <Link href="/email-confirm">
+        <Text>email-confirm</Text>
+      </Link>
     </View>
   );
 }

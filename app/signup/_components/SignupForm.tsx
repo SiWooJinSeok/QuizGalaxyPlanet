@@ -6,6 +6,7 @@ import { BASE_COLOR } from "../../../assets/constants/color";
 import { checkSignUpMessage } from "../../../assets/utils/checkSignMessage";
 import { axiosInstance } from "../../../assets/api/axiosInstance";
 import { changeAxiosErrorMessage } from "../../../assets/utils/changeAxiosErrorMessage";
+import { formStyle } from "./../../../assets/styles/signStyle";
 
 export default function SignupForm() {
   const [email, setEmail] = useState("");
@@ -44,7 +45,7 @@ export default function SignupForm() {
   };
 
   return (
-    <View style={styles.form}>
+    <View style={formStyle.form}>
       <InputBox
         labelName="이메일"
         placeholder="이메일을 입력해주세요"
@@ -72,38 +73,13 @@ export default function SignupForm() {
         secureTextEntry
       />
 
-      <Pressable style={styles.submitButton} onPress={submitSignup}>
-        <Text style={styles.submitButtonText}>회원가입</Text>
+      <Pressable style={formStyle.submitButton} onPress={submitSignup}>
+        <Text style={formStyle.submitButtonText}>회원가입</Text>
       </Pressable>
 
-      <Link href={{ pathname: "/login" }} style={styles.signLinkText}>
-        <Text style={styles.signLinkText}>로그인하러 가기</Text>
+      <Link href={{ pathname: "/login" }} style={formStyle.signLinkText}>
+        <Text style={formStyle.signLinkText}>로그인하러 가기</Text>
       </Link>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  form: {
-    flex: 1,
-    justifyContent: "flex-start",
-  },
-  submitButton: {
-    backgroundColor: BASE_COLOR.LIGHT,
-    padding: 20,
-    borderRadius: 15,
-    alignItems: "center",
-    marginHorizontal: 20,
-    marginTop: 30,
-  },
-  submitButtonText: {
-    fontSize: 20,
-    color: BASE_COLOR.LIGHT_TEXT,
-  },
-  signLinkText: {
-    color: BASE_COLOR.LIGHT,
-    fontSize: 20,
-    textAlign: "center",
-    padding: 20,
-  },
-});

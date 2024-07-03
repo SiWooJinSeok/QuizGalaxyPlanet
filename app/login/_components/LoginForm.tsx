@@ -1,12 +1,12 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import React, { useState } from "react";
 import InputBox from "../../../assets/components/Input/InputBox";
-import { BASE_COLOR } from "../../../assets/constants/color";
 import { Link, router } from "expo-router";
 import { checkLoginMessage } from "../../../assets/utils/checkSignMessage";
 import { axiosInstance } from "../../../assets/api/axiosInstance";
 import userStore from "../../../assets/stores/userStore";
 import { ResponseUserType } from "../../../assets/types/userType";
+import { formStyle } from "../../../assets/styles/signStyle";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -43,7 +43,7 @@ export default function LoginForm() {
   };
 
   return (
-    <View style={styles.form}>
+    <View style={formStyle.form}>
       <InputBox
         labelName="이메일"
         placeholder="이메일을 입력해주세요"
@@ -59,38 +59,13 @@ export default function LoginForm() {
         onSubmitEditing={submitLogin}
         secureTextEntry
       />
-      <Pressable style={styles.submitButton} onPress={submitLogin}>
-        <Text style={styles.submitButtonText}>로그인</Text>
+      <Pressable style={formStyle.submitButton} onPress={submitLogin}>
+        <Text style={formStyle.submitButtonText}>로그인</Text>
       </Pressable>
 
-      <Link href={{ pathname: "/signup" }} style={styles.signLinkText}>
-        <Text style={styles.signLinkText}>회원가입하러 가기</Text>
+      <Link href={{ pathname: "/signup" }} style={formStyle.signLinkText}>
+        <Text style={formStyle.signLinkText}>회원가입하러 가기</Text>
       </Link>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  form: {
-    flex: 3,
-    justifyContent: "flex-start",
-  },
-  submitButton: {
-    backgroundColor: BASE_COLOR.LIGHT,
-    padding: 20,
-    borderRadius: 15,
-    alignItems: "center",
-    marginHorizontal: 20,
-    marginTop: 30,
-  },
-  submitButtonText: {
-    fontSize: 20,
-    color: BASE_COLOR.LIGHT_TEXT,
-  },
-  signLinkText: {
-    color: BASE_COLOR.LIGHT,
-    fontSize: 20,
-    textAlign: "center",
-    padding: 20,
-  },
-});
