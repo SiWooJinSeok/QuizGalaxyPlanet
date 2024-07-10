@@ -1,16 +1,26 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 import React from "react";
 import { BASE_COLOR } from "../../../assets/constants/color";
+import playStore from "../../../assets/stores/playstore";
 
 interface CategoryProps {
   name: string;
 }
 
 export default function Category({ name }: CategoryProps) {
+  const { setCategoryName, setModalVisible, modalVisible } = playStore();
+
+  const onPress = () => {
+    setCategoryName(name);
+    setModalVisible(!modalVisible);
+  };
+
   return (
-    <View style={styles.container}>
-      <Text>{name}</Text>
-    </View>
+    <Pressable onPress={onPress}>
+      <View style={styles.container}>
+        <Text>{name}</Text>
+      </View>
+    </Pressable>
   );
 }
 

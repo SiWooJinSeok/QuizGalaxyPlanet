@@ -6,7 +6,7 @@ import { Image } from "expo-image";
 import { containerStyle } from "../../../assets/styles/common";
 
 export default function LobbyHeader() {
-  const { user, accessToken } = userStore();
+  const { user } = userStore();
 
   return (
     <View style={containerStyle.flex_1}>
@@ -15,7 +15,9 @@ export default function LobbyHeader() {
         <View style={styles.profile}>
           <Image
             style={styles.profileImage}
-            source={require("../../../assets/img/logo.jpg")}
+            source={
+              user.profile_image || require("../../../assets/img/logo.jpg")
+            }
             contentFit="cover"
           />
           <Text style={styles.text}>{user.nickname}</Text>

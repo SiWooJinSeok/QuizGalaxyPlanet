@@ -45,6 +45,7 @@ const mockData = [
 const { width, height } = Dimensions.get("window");
 
 export default function CategoryList() {
+  const onpress = (name: string) => {};
   return (
     <View style={styles.container}>
       <View style={styles.list}>
